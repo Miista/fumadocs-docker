@@ -22,9 +22,13 @@ start_server() {
 rebuild
 start_server
 
-# Watch for changes and rebuild
+# Watch for changes and rebuild.
+# Exclude editor cruft (vim .swp/.swpx, ~ backups, dotfiles, 4913 test file)
+# so `vi`-ing a doc doesn't spuriously rebuild on the swap-file create/delete.
+WATCH_EXCLUDE='(\.sw[a-z]?x?$|~$|/\.[^/]*$|/4913$)'
 echo "[fumadocs] watching $CONTENT_DIR for changes..."
-while inotifywait -r -e modify,create,delete,move "$CONTENT_DIR" 2>/dev/null; do
+while inotifywait -r -e modify,create,delete,move \
+    --exclude "$WATCH_EXCLUDE" "$CONTENT_DIR" 2>/dev/null; do
   echo "[fumadocs] change detected, rebuilding..."
   rebuild
   start_server
