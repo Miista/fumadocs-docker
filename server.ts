@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-const root = join(import.meta.dir, 'out');
+const root = join(process.cwd(), 'out');
 const port = parseInt(process.env.PORT ?? '3000');
 
 Bun.serve({
