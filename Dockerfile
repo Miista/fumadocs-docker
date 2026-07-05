@@ -2,11 +2,12 @@ ARG FUMADOCS_VERSION=latest
 
 FROM oven/bun:1 AS deps
 WORKDIR /app
-COPY package.json bun.lock* ./
+COPY package.json bun.lock ./
 RUN if [ "$FUMADOCS_VERSION" != "latest" ]; then \
       bun add fumadocs-core@$FUMADOCS_VERSION fumadocs-ui@$FUMADOCS_VERSION @fumadocs/local-md@$FUMADOCS_VERSION; \
+    else \
+      bun install --frozen-lockfile; \
     fi
-RUN bun install --frozen-lockfile 2>/dev/null || bun install
 
 FROM oven/bun:1
 WORKDIR /app
