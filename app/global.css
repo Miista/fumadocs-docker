@@ -7,6 +7,13 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Hide the header row of key/value spec tables whose headers are all empty.
+   Markdown always emits a <thead>; when the source leaves the header cells
+   blank (`| | |`) the empty band looks broken. If no <th> has content, drop it. */
+.prose table:not(:has(thead th:not(:empty))) thead {
+  display: none;
+}
+
 html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
