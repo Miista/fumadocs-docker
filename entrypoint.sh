@@ -13,7 +13,7 @@ start_server() {
     kill "$SERVER_PID"
     wait "$SERVER_PID" 2>/dev/null || true
   fi
-  bun run start &
+  bun /app/server.ts &
   SERVER_PID=$!
   echo "[fumadocs] server started (pid $SERVER_PID)"
 }
