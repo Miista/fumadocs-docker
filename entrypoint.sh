@@ -13,7 +13,7 @@ start_server() {
     kill "$SERVER_PID"
     wait "$SERVER_PID" 2>/dev/null || true
   fi
-  bunx serve out -p 3000 -s &
+  bun run start &
   SERVER_PID=$!
   echo "[fumadocs] server started (pid $SERVER_PID)"
 }

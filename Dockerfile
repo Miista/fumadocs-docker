@@ -13,7 +13,6 @@ FROM oven/bun:1
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y inotify-tools && rm -rf /var/lib/apt/lists/*
-RUN bun add -g serve
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
