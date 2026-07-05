@@ -4,3 +4,8 @@ node_modules/
 out/
 test-content/
 *.swp
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
