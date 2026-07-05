@@ -1,0 +1,31 @@
+{
+  "name": "fumadocs-wrapper",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "local-md dev -- bun next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@fumadocs/local-md": "latest",
+    "cnfast": "^0.0.8",
+    "fumadocs-core": "latest",
+    "fumadocs-ui": "latest",
+    "lucide-react": "^1.23.0",
+    "next": "16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
+    "@types/mdx": "^2.0.14",
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^6.0.3"
+  }
+}
