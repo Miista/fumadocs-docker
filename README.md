@@ -1,4 +1,4 @@
-# fumadocs-wrapper
+# fumadocs-docker
 
 A Docker image that runs a [Fumadocs](https://fumadocs.dev) documentation site. Drop in a folder of Markdown files and get a full-featured docs site — search, sidebar, syntax highlighting, dark mode — with no build step required.
 
@@ -18,10 +18,12 @@ services:
     image: ghcr.io/miista/fumadocs-docker:latest
     volumes:
       - ./my-docs:/content:ro
+      # Optional: mount a custom CSS file to override Fumadocs styles
+      # - ./custom.css:/app/custom.css:ro
     ports:
       - "3000:3000"
     environment:
-      DOCS_TITLE: "Homelab"
+      DOCS_TITLE: "My Docs"
 ```
 
 Mount any directory of Markdown files at `/content`. The top-level `/content/docs/` folder is used as the docs root.
@@ -32,8 +34,8 @@ Files are standard Markdown with an optional frontmatter header:
 
 ```markdown
 ---
-title: Restic Backups
-description: How backups are configured
+title: Getting Started
+description: An introduction to this docs site
 ---
 
 Content goes here. Link to other pages with [Page Title](/docs/page-title).
@@ -44,13 +46,9 @@ Folder structure becomes navigation:
 ```
 my-docs/
 └── docs/
-    ├── index.md              # /docs
-    ├── infrastructure/
-    │   ├── pi.md             # /docs/infrastructure/pi
-    │   ├── optiplex.md
-    │   └── caddy.md
-    └── runbooks/
-        └── restore.md
+    ├── index.md        # /docs
+    ├── setup.md        # /docs/setup
+    └── reference.md   # /docs/reference
 ```
 
 ## Customization
@@ -73,12 +71,12 @@ volumes:
 
 ## Automatic updates
 
-A GitHub Actions workflow runs daily and checks for new releases of the upstream [Fumadocs](https://github.com/fuma-nama/fumadocs) package. When a new version is detected — or the wrapper itself changes — it builds and publishes a new multi-arch image (`linux/amd64`, `linux/arm64`) to GHCR.
+A GitHub Actions workflow runs daily and checks for new releases of the upstream [Fumadocs](https://github.com/fuma-nama/fumadocs) package. When a new version is detected — or the image itself changes — it builds and publishes a new multi-arch image (`linux/amd64`, `linux/arm64`) to GHCR.
 
 ### Tags
 
 | Tag | Example | Mutable? | Use for |
 |-----|---------|----------|---------|
-| `<version>-g<sha>` | `16.10.7-ga1b2c3` | No | Pinning / reproducible deploys |
+| `<version>-g<sha>` | `16.10.7-ga1b2c3d` | No | Pinning / reproducible deploys |
 | `<version>` | `16.10.7` | Yes | Drop-in upstream-version tracking |
 | `latest` | `latest` | Yes | Always-newest |
