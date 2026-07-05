@@ -3,6 +3,8 @@ services:
     image: ghcr.io/miista/fumadocs-docker:latest
     volumes:
       - /path/to/your/docs:/content:ro
+      # Optional: mount a custom CSS file to override Fumadocs styles
+      # - ./custom.css:/app/custom.css:ro
     ports:
       - "3000:3000"
     environment:

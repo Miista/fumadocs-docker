@@ -8,9 +8,7 @@ Running a documentation site normally requires a build step: install dependencie
 
 ## How it works
 
-This image ships a pre-configured Fumadocs + Next.js app. At runtime you mount a directory of `.md` or `.mdx` files into `/content`. The app reads that directory, auto-generates navigation from the folder structure, and serves the site in development mode with hot reload.
-
-**Live content** — edits to existing files are reflected in the browser within a second or two, no restart needed. New files added to the mounted directory are also picked up automatically; the dev server detects them and updates the sidebar without a container restart.
+This image ships a pre-configured Fumadocs + Next.js app. At runtime you mount a directory of `.md` or `.mdx` files into `/content`. The app builds a static site from those files and serves it. A file watcher triggers a rebuild whenever content changes — the previous build keeps serving until the new one is ready.
 
 ## Usage
 
@@ -38,7 +36,7 @@ title: Restic Backups
 description: How backups are configured
 ---
 
-Content goes here. Link to other pages with [[Page Title]] wikilinks.
+Content goes here. Link to other pages with [Page Title](/docs/page-title).
 ```
 
 Folder structure becomes navigation:
@@ -53,6 +51,17 @@ my-docs/
     │   └── caddy.md
     └── runbooks/
         └── restore.md
+```
+
+## Customization
+
+### CSS
+
+Mount a CSS file at `/app/custom.css` to override or extend the default Fumadocs styles. It is imported last, after all framework styles.
+
+```yaml
+volumes:
+  - ./custom.css:/app/custom.css:ro
 ```
 
 ## Environment variables
