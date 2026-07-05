@@ -4,6 +4,7 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 import * as Icons from 'lucide-react';
 import type { MDXComponents } from 'mdx/types';
 import { FC } from 'react';
+import { BackupCoverage } from './backup-coverage';
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -11,6 +12,7 @@ export function getMDXComponents(components?: MDXComponents) {
     ...(Icons as unknown as Record<keyof typeof Icons, FC>),
     ...Accordions,
     ...Tabs,
+    BackupCoverage,
     ...components,
   } satisfies MDXComponents;
 }
