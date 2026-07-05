@@ -2,7 +2,6 @@
 set -e
 
 CONTENT_DIR="${CONTENT_DIR:-/content/docs}"
-BUILD_DIR=".next"
 
 rebuild() {
   echo "[fumadocs] building..."
@@ -14,7 +13,7 @@ start_server() {
     kill "$SERVER_PID"
     wait "$SERVER_PID" 2>/dev/null || true
   fi
-  bun run start &
+  bunx serve out -p 3000 -s &
   SERVER_PID=$!
   echo "[fumadocs] server started (pid $SERVER_PID)"
 }
