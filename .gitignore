@@ -2,3 +2,5 @@ node_modules/
 .next/
 .source/
 out/
+test-content/
+*.swp
