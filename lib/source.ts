@@ -1,4 +1,5 @@
 import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
+import { remarkSteps } from 'fumadocs-core/mdx-plugins/remark-steps';
 import { docsContentRoute, docsImageRoute, docsRoute } from './shared';
 import { localMd } from '@fumadocs/local-md';
 import { dynamicLoader } from 'fumadocs-core/source/dynamic';
@@ -7,6 +8,12 @@ const contentDir = process.env.CONTENT_DIR ?? 'content/docs';
 
 const docs = localMd({
   dir: contentDir,
+  mdOptions: {
+    remarkPlugins: [remarkSteps],
+  },
+  mdxOptions: {
+    remarkPlugins: [remarkSteps],
+  },
 });
 
 if (process.env.NODE_ENV === 'development') {
