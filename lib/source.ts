@@ -8,6 +8,11 @@ const contentDir = process.env.CONTENT_DIR ?? 'content/docs';
 
 const docs = localMd({
   dir: contentDir,
+  // _generated/ holds Include-only fragments (service-info-gen output) —
+  // not real pages, and lacking frontmatter would otherwise fail the
+  // content scan. Exclude via a negated glob rather than requiring dummy
+  // frontmatter on every generated file.
+  include: ['**/*.{md,mdx}', '!_generated/**'],
   mdOptions: {
     remarkPlugins: [remarkSteps],
   },
