@@ -9,10 +9,9 @@
   },
   "dependencies": {
     "@fumadocs/local-md": "latest",
-    "@orama/orama": "^3.1.18",
     "cnfast": "^0.0.8",
-    "fumadocs-core": "latest",
-    "fumadocs-ui": "latest",
+    "fumadocs-core": "16.14.5",
+    "fumadocs-ui": "16.14.5",
     "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "react": "^19.2.7",
