@@ -7,7 +7,6 @@ import remarkRehype from 'remark-rehype';
 import rehypeReact, { type Options as RehypeReactOptions } from 'rehype-react';
 import * as prod from 'react/jsx-runtime';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
-import { BackupCoverage } from './backup-coverage';
 
 // Deliberately NOT importing getMDXComponents from ./mdx — that file
 // imports Include, and this needs a fixed set (no self-reference, a
@@ -33,7 +32,7 @@ const processor = unified()
   .use(remarkRehype)
   .use(rehypeReact, {
     ...prod,
-    components: { ...defaultMdxComponents, BackupCoverage },
+    components: { ...defaultMdxComponents },
   } as RehypeReactOptions);
 
 /**
